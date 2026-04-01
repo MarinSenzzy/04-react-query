@@ -27,9 +27,6 @@ const ReactPaginate = (
 ).default;
 
 function App() {
-  // const [movies, setMovies] = useState<Movie[]>([]);
-  // const [isLoad, setIsLoad] = useState<boolean>(false);
-  // const [isError, setIsError] = useState<boolean>(false);
   const [query, setQuery] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [onSelect, setOnSelect] = useState<Movie | null>(null);
@@ -46,21 +43,15 @@ function App() {
   };
   useEffect(() => {
     if (isSuccess && data.results.length === 0) {
-      console.log("toast error no movie");
-
       toast.error("No movies found for your request.", { removeDelay: 1500 });
     }
   }, [isSuccess, data]);
 
   useEffect(() => {
     if (isError) {
-      console.log("toast some erore");
-
       toast.error(error.message, { removeDelay: 1500 });
     }
   }, [isError, error]);
-  console.log(query);
-
   return (
     <>
       <Toaster />
