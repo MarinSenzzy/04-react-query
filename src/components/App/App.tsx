@@ -27,13 +27,13 @@ const ReactPaginate = (
 ).default;
 
 function App() {
-  const [query, setQuery] = useState<string | null>(null);
+  const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState(1);
   const [onSelect, setOnSelect] = useState<Movie | null>(null);
   const { data, isLoading, isError, isSuccess, error } = useQuery({
     queryKey: ["movie", query, page],
-    queryFn: () => fetchMovies(query as string, page),
-    enabled: query !== null,
+    queryFn: () => fetchMovies(query, page),
+    enabled: query !== "",
     placeholderData: keepPreviousData,
     staleTime: 2 * 60 * 1000,
   });
